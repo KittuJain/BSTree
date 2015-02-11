@@ -2,7 +2,6 @@
 #include "BSTree.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 void test_createTreeNode_creates_a_TreeNode_with_given_data (){
 	int data = 5;
@@ -31,6 +30,7 @@ void test_insert_inserts_given_element_at_root_if_tree_is_empty (){
 	int data = 12;
 	assertEqual(insert(&tree, data),1);
 	assertEqual(tree.root->data, 12);
+	assertEqual(tree.count,1);
 }
 
 void test_insert_inserts_given_element_at_left_if_root_is_greater_than_element (){
@@ -40,6 +40,7 @@ void test_insert_inserts_given_element_at_left_if_root_is_greater_than_element (
 	assertEqual(insert(&tree, data2),1);
 	assertEqual(tree.root->data, 12);
 	assertEqual(tree.root->left->data, 9);
+	assertEqual(tree.count,2);
 }
 
 void test_insert_inserts_given_element_at_right_if_root_is_smaller_than_element (){
@@ -49,4 +50,19 @@ void test_insert_inserts_given_element_at_right_if_root_is_smaller_than_element 
 	assertEqual(insert(&tree, data2),1);
 	assertEqual(tree.root->data, 12);
 	assertEqual(tree.root->right->data, 17);
+	assertEqual(tree.count,2);
+}
+
+void test_insert_inserts_the_value_in_next_row_if_the_element_is_smaller_than_the_root_and_no_space_in_first_level(){
+	BSTree tree = createBSTree();
+	int data1 = 8, data2 = 7, data3 = 10, data4 = 6;
+	assertEqual(insert(&tree,data1),1);
+	assertEqual(insert(&tree,data2),1);
+	assertEqual(insert(&tree,data3),1);
+	assertEqual(insert(&tree,data4),1);
+	assertEqual(tree.count,4);
+	assertEqual(tree.root->data,8);
+	assertEqual(tree.root->left->data,7);
+	assertEqual(tree.root->right->data,10);
+	assertEqual(tree.root->left->left->data,6);
 }
