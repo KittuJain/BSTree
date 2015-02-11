@@ -25,3 +25,28 @@ void test_createBSTree_creates_an_empty_tree (){
 	assert(tree.root == 0);
 	assert(tree.count == 0);
 }
+
+void test_insert_inserts_given_element_at_root_if_tree_is_empty (){
+	BSTree tree = createBSTree();
+	int data = 12;
+	assertEqual(insert(&tree, data),1);
+	assertEqual(tree.root->data, 12);
+}
+
+void test_insert_inserts_given_element_at_left_if_root_is_greater_than_element (){
+	BSTree tree = createBSTree();
+	int data1 = 12, data2 = 9;
+	assertEqual(insert(&tree, data1),1);
+	assertEqual(insert(&tree, data2),1);
+	assertEqual(tree.root->data, 12);
+	assertEqual(tree.root->left->data, 9);
+}
+
+void test_insert_inserts_given_element_at_right_if_root_is_smaller_than_element (){
+	BSTree tree = createBSTree();
+	int data1 = 12, data2 = 17;
+	assertEqual(insert(&tree, data1),1);
+	assertEqual(insert(&tree, data2),1);
+	assertEqual(tree.root->data, 12);
+	assertEqual(tree.root->right->data, 17);
+}
