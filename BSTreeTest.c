@@ -66,3 +66,14 @@ void test_insert_inserts_the_value_in_next_row_if_the_element_is_smaller_than_th
 	assertEqual(tree.root->right->data,10);
 	assertEqual(tree.root->left->left->data,6);
 }
+
+void test_find_gives_NULL_when_there_is_no_element (){
+	BSTree tree = createBSTree();
+	int elementToBeSearched = 50;
+	int data1 = 8, data2 = 7, data3 = 10, data4 = 6;
+	assertEqual(insert(&tree,data1),1);
+	assertEqual(insert(&tree,data2),1);
+	assertEqual(insert(&tree,data3),1);
+	assertEqual(insert(&tree,data4),1);
+	assertEqual(find(tree, elementToBeSearched),0);
+}

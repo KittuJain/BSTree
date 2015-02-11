@@ -17,3 +17,4 @@ struct bsTree{
 Node_ptr createTreeNode(int);
 BSTree createBSTree(void);
 int insert(BSTree *, int);
+Node_ptr find(BSTree, int);

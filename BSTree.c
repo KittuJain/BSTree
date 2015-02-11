@@ -19,7 +19,7 @@ BSTree createBSTree(void){
 int insert(BSTree *tree, int element){
 	Node *node = createTreeNode(element);
 	BSTree sub_tree = createBSTree();
-	
+
 	if(!tree->root){
 		tree->root = node;
 	}
@@ -27,7 +27,7 @@ int insert(BSTree *tree, int element){
 	if(element < tree->root->data){
 		if(tree->root->left){
 			sub_tree.root = tree->root->left;
-			insert(&sub_tree,element);
+			insert(&sub_tree, element);
 		}
 		else
 			tree->root->left = node;
@@ -36,7 +36,7 @@ int insert(BSTree *tree, int element){
 	if(element > tree->root->data){
 		if(tree->root->right){
 			sub_tree.root = tree->root->right;
-			insert(&sub_tree,element);
+			insert(&sub_tree, element);
 		}
 		else
 			tree->root->right = node;
@@ -44,4 +44,23 @@ int insert(BSTree *tree, int element){
 	
 	tree->count++;
 	return 1;
+}
+
+Node_ptr find(BSTree tree, int element){
+	BSTree sub_tree = createBSTree();
+
+	if(!tree.root)
+		return NULL;
+	
+	if(element == tree.root->data)
+		return tree.root;
+
+	if(tree.root->right && (element > tree.root->data))
+		sub_tree.root = tree.root->right;
+
+	if(tree.root->left && (element < tree.root->data))
+		sub_tree.root = tree.root->left;
+
+	return find(sub_tree,element);
+
 }
