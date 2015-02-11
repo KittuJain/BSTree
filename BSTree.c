@@ -9,3 +9,9 @@ Node_ptr createTreeNode(int data){
 	node->data = data;
 	return node;
 }
+
+BSTree createBSTree(void){
+	BSTree *tree;
+	tree = calloc(sizeof(BSTree),1);
+	return *tree;
+}
