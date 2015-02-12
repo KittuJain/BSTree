@@ -71,11 +71,13 @@ Node_ptr delete(BSTree_ptr tree, int element){
 	if(tree->root->right && tree->root->right->data == element){
 		node = tree->root->right;
 		tree->root->right = NULL;
+		free(tree->root->right);
 	}
 	
 	if(tree->root->left && tree->root->left->data == element){
 		node = tree->root->left;
 		tree->root->left = NULL;
+		free(tree->root->left);
 	}
 
 	if(node == NULL){
