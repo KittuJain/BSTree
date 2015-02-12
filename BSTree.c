@@ -51,7 +51,7 @@ Node_ptr find(BSTree tree, int element){
 
 	if(!tree.root)
 		return NULL;
-	
+
 	if(element == tree.root->data)
 		return tree.root;
 
@@ -62,5 +62,4 @@ Node_ptr find(BSTree tree, int element){
 		sub_tree.root = tree.root->left;
 
 	return find(sub_tree,element);
-
 }

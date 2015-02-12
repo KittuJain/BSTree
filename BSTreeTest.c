@@ -75,5 +75,25 @@ void test_find_gives_NULL_when_there_is_no_element (){
 	assertEqual(insert(&tree,data2),1);
 	assertEqual(insert(&tree,data3),1);
 	assertEqual(insert(&tree,data4),1);
-	assertEqual(find(tree, elementToBeSearched),0);
+	assert(find(tree, elementToBeSearched) == 0);
+}
+
+void test_find_returns_the_node_if_node_is_found (){
+	BSTree tree = createBSTree();
+	assertEqual(insert(&tree,8),1);
+	assertEqual(insert(&tree,7),1);
+	assertEqual(insert(&tree,10),1);
+	assertEqual(insert(&tree,6),1);
+	assertEqual(find(tree,8)->data,8);
+	assertEqual(find(tree,7)->data,7);
+}
+
+void test_find_returns_the_node_if_node_exists (){
+	BSTree tree = createBSTree();
+	insert(&tree,8);	
+	insert(&tree,7);	
+	insert(&tree,10);	
+	insert(&tree,9);	
+	assertEqual(find(tree,8)->data,8);
+	assertEqual(find(tree,9)->data,9);
 }
