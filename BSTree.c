@@ -16,7 +16,7 @@ BSTree createBSTree(void){
 	return *tree;
 }
 
-int insert(BSTree *tree, int element){
+int insert(BSTree_ptr tree, int element){
 	Node *node = createTreeNode(element);
 	BSTree sub_tree = createBSTree();
 
@@ -62,4 +62,31 @@ Node_ptr find(BSTree tree, int element){
 		sub_tree.root = tree.root->left;
 
 	return find(sub_tree,element);
+}
+
+Node_ptr delete(BSTree_ptr tree, int element){
+	BSTree sub_tree = createBSTree();
+	Node_ptr node = NULL;
+
+	if(tree->root->right && tree->root->right->data == element){
+		node = tree->root->right;
+		tree->root->right = NULL;
+	}
+	
+	if(tree->root->left && tree->root->left->data == element){
+		node = tree->root->left;
+		tree->root->left = NULL;
+	}
+
+	if(node == NULL){
+		if(element < tree->root->data){
+			sub_tree.root = tree->root->left;
+			node = delete(&sub_tree, element);
+		}
+		if(element > tree->root->data){
+			sub_tree.root = tree->root->right;
+			node = delete(&sub_tree, element);
+		}		 
+	}
+	return node;
 }

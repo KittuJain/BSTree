@@ -97,3 +97,39 @@ void test_find_returns_the_node_if_node_exists (){
 	assertEqual(find(tree,8)->data,8);
 	assertEqual(find(tree,9)->data,9);
 }
+
+void test_delete_deletes_the_leafnode_of_the_tree(){
+	BSTree tree = createBSTree();
+	int data1 = 8, data2 = 7, data3= 10, data4 = 5, data5 = 12;
+	insert(&tree,data1);
+	insert(&tree,data2);
+	insert(&tree,data3);
+	insert(&tree,data4);
+	insert(&tree,data5);
+	assertEqual(delete(&tree,12)->data,12);
+}
+
+void test_delete_deletes_the_left_and_right_leafnode_of_the_tree (){
+	BSTree tree = createBSTree();
+	int data1 = 19, data2 = 4, data3 = 27;
+	insert(&tree,data1);
+	insert(&tree,data2);
+	insert(&tree,data3);
+	assertEqual(delete(&tree,4)->data,4);
+	assertEqual(delete(&tree,27)->data,27);
+	assert(tree.root->left==0);
+	assert(tree.root->right==0);
+}
+
+void test_delete_deletes_the_right_and_leftNode_of_left_subTree_from_the_tree (){
+	BSTree tree = createBSTree();
+	int data1 = 19, data2 = 14, data3 = 27, data4 = 10;
+	assertEqual(insert(&tree,data1),1);
+	assertEqual(insert(&tree,data2),1);
+	assertEqual(insert(&tree,data3),1);
+	assertEqual(insert(&tree,data4),1);
+	assertEqual(delete(&tree,27)->data,27);
+	assertEqual(delete(&tree,10)->data,10);
+	assert(tree.root->right==0);
+	assert(tree.root->left->left==0);
+} 
