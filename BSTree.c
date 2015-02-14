@@ -92,3 +92,18 @@ Node_ptr delete(BSTree_ptr tree, int element){
 	}
 	return node;
 }
+
+void traverse(BSTree tree, void (*func)(int)){
+	BSTree sub_tree = createBSTree();
+	if(tree.root){
+		if(tree.root->left){
+			sub_tree.root = tree.root->left;
+			traverse(sub_tree,func);
+		}
+		func(tree.root->data);
+		if(tree.root->right){
+			sub_tree.root = tree.root->right;
+			traverse(sub_tree,func);
+		}
+	}
+}

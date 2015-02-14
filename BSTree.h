@@ -20,3 +20,4 @@ BSTree createBSTree(void);
 int insert(BSTree_ptr, int);
 Node_ptr find(BSTree, int);
 Node_ptr delete(BSTree_ptr, int);
+void traverse(BSTree, void (*)(int));
