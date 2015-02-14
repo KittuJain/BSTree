@@ -140,22 +140,27 @@ void substitute(int a) {
 	b[a] = a;
 }
 
+void test_traverse_inorder_traversal_works_fine_for_empty_tree (){
+	BSTree tree = createBSTree();
+	traverse(tree,substitute);
+}
+
 void test_traverse_inorder_travarsal_gives_numbers_in_accending_order (){
 	BSTree tree = createBSTree();
 	int a[] = {0,1,2,3,4,5,6};
-	// insert(&tree,3);
-	// insert(&tree,1);
-	// insert(&tree,5);
-	// insert(&tree,0);
-	// insert(&tree,2);
-	// insert(&tree,4);
-	// insert(&tree,6);
+	insert(&tree,3);
+	insert(&tree,1);
+	insert(&tree,5);
+	insert(&tree,0);
+	insert(&tree,2);
+	insert(&tree,4);
+	insert(&tree,6);
 	traverse(tree,substitute);
-	// assertEqual(a[0],b[0]);
-	// assertEqual(a[1],b[1]);
-	// assertEqual(a[2],b[2]);
-	// assertEqual(a[3],b[3]);
-	// assertEqual(a[4],b[4]);
-	// assertEqual(a[5],b[5]);
-	// assertEqual(a[6],b[6]);
+	assertEqual(a[0],b[0]);
+	assertEqual(a[1],b[1]);
+	assertEqual(a[2],b[2]);
+	assertEqual(a[3],b[3]);
+	assertEqual(a[4],b[4]);
+	assertEqual(a[5],b[5]);
+	assertEqual(a[6],b[6]);
 }
